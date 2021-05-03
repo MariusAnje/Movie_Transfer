@@ -13,16 +13,8 @@
 
 ## Important
 1. **Key Index File:** ID_Title.tsv --> Movie titles and their ID in this repo
-2. **Key data File:** npAttrEmbOv.npy --> a numpy file with K lines, each line: [0:3] numerical attributes, [3:159] one hot representation of categorical attributes, [159:209] text embeddings, [209] rating
+2. **Key data File:** npAttrEmbOvwDoubanR.npy --> a numpy file with K lines, each line: [0:3] numerical attributes, [3:159] one hot representation of categorical attributes, [159:209] text embeddings, [209] IMDB rating, [210] Douban Rating
 3. **Key training File:** EmbInteresting.ipynb --> input: npAttrEmbOv.npy, model: MLP
-4. **Key tricky File:** npIMDBvsDoubanSetOp.npy --> when loaded, you will get a *Dictionary* with 2 keys: "IMDBIntersectDouban" gives you the indexes of lines in file "npAttrEmbOv.npy" that are the intersection (IMDB $\cap$ Douban) and key "IMDBDifferenceDouban" gives you the difference (IMDB $-$ Douban). E.g.
-
-```python
-import numpy as np
-
-total_dataset = np.load("npAttrEmbOv.npy")
-IDs = np.load("npIMDBvsDoubanSetOp.npy")
-IMDB_and_Douban = total_dataset[IDs["IMDBIntersectDouban"]]
-IMDB_without_Douban = total_dataset[IDs["IMDBDifferenceDouban"]]
-```
+4. **Key index File 1:** IMDBIntersectDouban.npy --> an 1D numpy array saying the index number for npAttrEmbOvwDoubanR.npy that is the Intersect set of IMDB and Douban (IMDB $\cap$ Douban)
+5. **Key index File 2:** IMDBDifferenceDouban.npy --> an 1D numpy array saying the index number for npAttrEmbOvwDoubanR.npy that is the Diference set of IMDB and Douban (IMDB $-$ Douban)
 
